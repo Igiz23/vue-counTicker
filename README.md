@@ -1,4 +1,6 @@
-# cryptonomicon_my
+# crypto ticker 
+
+https://crypto-coinvue.netlify.app/
 
 ## Project setup
 ```
