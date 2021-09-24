@@ -1,6 +1,15 @@
-# crypto ticker 
+# Crypto ticker 
 
-https://crypto-coinvue.netlify.app/
+~~ [This project link in Netlify](https://crypto-coinvue.netlify.app/) ~~
+
+-Vue
+
+-Vue CLI
+
+-CSS framework Tailwind/ tailwind-forms
+
+-API [CryptoCompare](https://min-api.cryptocompare.com/)
+
 
 ## Project setup
 ```
