@@ -72,6 +72,63 @@
         </button>
       </section>
       <tamplate v-if="tickers.length">
+        <div>
+          <button
+            class="
+              mx-2
+              my-4
+              inline-flex
+              items-center
+              py-2
+              px-4
+              border border-transparent
+              shadow-sm
+              text-sm
+              leading-4
+              font-medium
+              rounded-full
+              text-white
+              bg-gray-600
+              hover:bg-gray-700
+              transition-colors
+              duration-300
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-gray-500
+            "
+          >
+            Назад
+          </button>
+          <button
+            class="
+              mx-2
+              my-4
+              inline-flex
+              items-center
+              py-2
+              px-4
+              border border-transparent
+              shadow-sm
+              text-sm
+              leading-4
+              font-medium
+              rounded-full
+              text-white
+              bg-gray-600
+              hover:bg-gray-700
+              transition-colors
+              duration-300
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-gray-500
+            "
+          >
+            Вперед
+          </button>
+        </div>
+        <div>Фильтр: <input v-model="filter" /></div>
         <hr class="w-full border-t border-gray-600 my-4" />
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
@@ -178,13 +235,15 @@
 
 <script>
 export default {
-  name: "App",
+  el: "App",
   data() {
     return {
       ticker: "",
       tickers: [],
       sel: null,
       graph: [],
+      page: 1,
+      filter: "",
     };
   },
 
@@ -199,6 +258,12 @@ export default {
   },
 
   methods: {
+    filteredTickers() {
+      return this.tickers.filter((ticker) => {
+        ticker.name.includes(this.filter);
+      });
+    },
+
     subscribeToUpdates(tickerName) {
       const apiKey =
         "96f864bf7caade1797f4e16a4963620c31ff5c8141e55708fcdacd374f549cdb";
@@ -220,7 +285,7 @@ export default {
       if (this.ticker.length) {
         const currentTicker = { name: this.ticker, price: "-" };
         this.tickers.push(currentTicker);
-
+        this.filter = "";
         localStorage.setItem("crypto-list", JSON.stringify(this.tickers));
         this.subscribeToUpdates(currentTicker.name);
       }
